@@ -4,6 +4,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 )
 
@@ -41,4 +42,20 @@ func ValidateJWT(tokenString string) (*JWTClaims, error) {
 		return nil, err
 	}
 	return claims, nil
+}
+
+func GetUserIDFromContext(c *gin.Context) (uint, bool) {
+	uid, exists := c.Get("userID")
+
+	if !exists {
+		return 0, false
+	}
+
+	userID, ok := uid.(uint)
+
+	if !ok {
+		return 0, false
+	}
+
+	return userID, true
 }
