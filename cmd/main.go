@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"smart-command-center-backend/config"
+	"smart-command-center-backend/firebase"
 	"smart-command-center-backend/models"
 	"smart-command-center-backend/routes"
 
@@ -12,14 +13,14 @@ import (
 )
 
 func main() {
-
+	// ENV loading
 	err := godotenv.Load()
 	if err != nil {
 		log.Println("No .env file found, using system environment variables")
 	}
 
+	// Database connection and migration
 	config.ConnectDatabase()
-
 	if err := models.Migrate(config.DB); err != nil {
 		log.Fatalf("Migration failed: %v", err)
 	}
@@ -27,6 +28,10 @@ func main() {
 		log.Fatalf("Seeding failed: %v", err)
 	}
 
+	// Firebase initialization
+	firebase.InitializeFirebase()
+
+	// Router
 	r := routes.SetupRouter()
 	r.SetTrustedProxies(nil)
 
