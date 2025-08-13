@@ -91,11 +91,11 @@ go run cmd/main.go
 - [x] Endpoint Login
 - [x] Endpoint Role
 - [x] Endpoint CRUD User
-- [ ] Endpoint kirim panic button
-- [ ] Integrasi Google Maps API untuk routing
-- [ ] Realtime tracking ambulans
-- [ ] Firebase Notification
-- [ ] Dashboard Analytics Endpoint
+- [x] Endpoint kirim panic button
+- [x] Integrasi Google Maps API untuk routing
+- [x] Realtime tracking ambulans
+- [x] Firebase Notification
+- [x] Dashboard Analytics Endpoint
 
 ## 👨‍💻 Kontributor
 

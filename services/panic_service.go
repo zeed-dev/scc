@@ -3,6 +3,7 @@ package services
 import (
 	"errors"
 	"smart-command-center-backend/config"
+	"smart-command-center-backend/firebase"
 	"smart-command-center-backend/models"
 	"time"
 )
@@ -29,6 +30,9 @@ func SendPanic(userID uint, input PanicRequest) (*models.PanicEvent, error) {
 	if err := config.DB.Create(&panicData).Error; err != nil {
 		return nil, errors.New("failed to create panic event")
 	}
+
+	// Send notification to responders
+	_ = firebase.SendNotificationToTopic("panic_alerts", "Panic Alert", "A new panic event has been reported")
 
 	return &panicData, nil
 }

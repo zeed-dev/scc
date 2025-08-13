@@ -34,6 +34,9 @@ func SetupRouter() *gin.Engine {
 		UserRoutes(authorized)
 		RoleRoutes(authorized)
 		PanicRoutes(authorized)
+		MapRoutes(authorized)
+		AmbulanceRoutes(authorized)
+		DashboardRoutes(authorized)
 	}
 
 	return r
