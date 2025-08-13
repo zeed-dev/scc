@@ -91,7 +91,7 @@ go run cmd/main.go
 - [x] Endpoint Login
 - [x] Endpoint Role
 - [x] Endpoint CRUD User
-- [ ] Endpoint kirim panic button
+- [x] Endpoint kirim panic button (lihat `routes/panic_routes.go`)
 - [ ] Integrasi Google Maps API untuk routing
 - [ ] Realtime tracking ambulans
 - [ ] Firebase Notification
