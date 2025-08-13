@@ -83,6 +83,17 @@ func UpdateUser(id string, input UpdateUserInput) (models.User, error) {
 		user.Email = input.Email
 	}
 	if input.RoleID != 0 {
+		var exists bool
+		err := config.DB.Model(&models.Role{}).
+			Select("count(*) > 0").
+			Where("id = ?", input.RoleID).
+			Find(&exists).Error
+		if err != nil {
+			return models.User{}, err
+		}
+		if !exists {
+			return models.User{}, errors.New("role not found")
+		}
 		user.RoleID = input.RoleID
 	}
 	if input.Password != "" {
