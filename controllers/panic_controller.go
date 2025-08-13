@@ -21,11 +21,11 @@ func SendPanic(c *gin.Context) {
 		return
 	}
 
-	pannicEvent, err := services.SendPanic(userID, input)
+	panicEvent, err := services.SendPanic(userID, input)
 	if err != nil {
 		utils.InternalServerErrorResponse(c, "Failed to send panic", err.Error())
 		return
 	}
 
-	utils.CreatedResponse(c, "Panic event created successfully", pannicEvent)
+	utils.CreatedResponse(c, "Panic event created successfully", panicEvent)
 }
