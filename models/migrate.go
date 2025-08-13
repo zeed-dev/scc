@@ -3,7 +3,7 @@ package models
 import "gorm.io/gorm"
 
 func Migrate(db *gorm.DB) error {
-	err := db.AutoMigrate(&Role{}, &User{}, &PanicEvent{})
+	err := db.AutoMigrate(&Role{}, &User{}, &PanicEvent{}, &AmbulanceLocation{})
 	if err != nil {
 		return err
 	}
