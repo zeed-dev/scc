@@ -56,7 +56,11 @@ func UpdateUser(c *gin.Context) {
 
 	user, err := services.UpdateUser(id, input)
 	if err != nil {
-		utils.InternalServerErrorResponse(c, "Failed to update user", err.Error())
+		if err.Error() == "role not found" {
+			utils.NotFoundResponse(c, "Role not found")
+		} else {
+			utils.InternalServerErrorResponse(c, "Failed to update user", err.Error())
+		}
 		return
 	}
 
